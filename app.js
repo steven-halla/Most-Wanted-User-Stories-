@@ -4,7 +4,7 @@ let targetPerson = "";
 //Menu functions.
 //Used for the overall flow of the application.
 /////////////////////////////////////////////////////////////////
-//#region 
+//#region
 
 // app is the function called to start the entire application
 function app(people){
@@ -17,11 +17,11 @@ function app(people){
     case 'no':
       // TODO: search by traits
       break;
-      default:
-    app(people); // restart app
+    default:
+      app(people); // restart app
       break;
   }
-  
+
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
 }
@@ -45,32 +45,32 @@ function mainMenu(person, people){
   switch(displayOption){
     case "info":
       console.log("Name: " + person[0].firstName + " " + person[0].lastName + " Gender: " + person[0].gender + " DoB: " + person[0].dob + " height:" + person[0].height + " weight:" + person[0].weight + " eye color:" + person[0].eyeColor + " occupation: " + person[0].occupation )
-    // TODO: get person's info
-    break;
+      // TODO: get person's info
+      break;
     case "family":
       console.log("Name: " + person[0].firstName + " " + person[0].lastName + "has parents: " + person[0].parents + " and a spouse: " + person[0].currentSpouse)
-    // TODO: get person's family
-    break;
+      // TODO: get person's family
+      break;
     case "descendants":
-    // TODO: get person's descendants
-    break;
+      // TODO: get person's descendants
+      break;
     case "restart":
-    app(people); // restart
-    break;
+      app(people); // restart
+      break;
     case "quit":
-    return; // stop execution
+      return; // stop execution
     default:
-    return mainMenu(person, people); // ask again
+      return mainMenu(person, people); // ask again
   }
 }
 
-
+//
 //#endregion
 
 //Filter functions.
 //Ideally you will have a function for each trait.
 /////////////////////////////////////////////////////////////////
-//#region 
+//#region
 
 //nearly finished function used to search through an array of people to find matching first and last name and return a SINGLE person object.
 function searchByName(people){
@@ -88,7 +88,7 @@ function searchByName(people){
   // TODO: find the person single person object using the name they entered.
   console.log(foundPerson)
   return foundPerson;
-  
+
 }
 
 //finished function to search through an array of people to find matching eye colors. Use searchByName as reference.
@@ -138,7 +138,7 @@ function searchByDoB(people){
 //Display functions.
 //Functions for user interface.
 /////////////////////////////////////////////////////////////////
-//#region 
+//#region
 
 // alerts a list of people
 function displayPeople(people){
@@ -163,7 +163,7 @@ function displayPerson(person){
 //Validation functions.
 //Functions to validate user input.
 /////////////////////////////////////////////////////////////////
-//#region 
+//#region
 
 //a function that takes in a question to prompt, and a callback function to validate the user input.
 //response: Will capture the user input.
@@ -196,7 +196,7 @@ function autoValid(input){
 //Unfinished validation function you can use for any of your custom validation callbacks.
 //can be used for things like eye color validation for example.
 function customValidation(input){
-  
+
 }
 
 //#endregion
