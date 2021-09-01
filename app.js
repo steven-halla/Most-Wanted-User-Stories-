@@ -19,7 +19,7 @@ function app(people){
     app(people); // restart app
       break;
   }
-
+////
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
 }
