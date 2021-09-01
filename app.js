@@ -36,10 +36,6 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
-
-console.log(person)
-console.log(person[0].firstName)
-
 //*********************** */
 //they missed the index to display  the user
 //****************** */
@@ -107,8 +103,8 @@ function searchByEyeColor(people){
     }
   })
   // TODO: find the person single person object using the name they entered.
-  console.log(foundPerson)
-  return foundPerson;
+  console.log(foundEyeColor);
+  return foundEyeColor;
 }
 
 //TODO: add other trait filter functions here.
