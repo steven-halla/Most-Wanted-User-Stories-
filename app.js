@@ -1,12 +1,10 @@
 "use strict"
 
-
 //Menu functions.
 //Used for the overall flow of the application.
-/////////////////////////////////////////////////////////////////
-//#region 
-
 // app is the function called to start the entire application
+// found bug that if you type in a number,it breaks the program, need to fix this so that if invalid input is used, that input is asked for again.
+// we can do this for the
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   let searchResults;
@@ -21,7 +19,7 @@ function app(people){
     app(people); // restart app
       break;
   }
-  
+
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
 }
@@ -58,16 +56,12 @@ function mainMenu(person, people){
   }
 }
 
-//#endregion
-
 //Filter functions.
 //Ideally you will have a function for each trait.
-/////////////////////////////////////////////////////////////////
-//#region 
-
 //nearly finished function used to search through an array of people to find matching first and last name and return a SINGLE person object.
 function searchByName(people){
-  let firstName = promptFor("What is the person's first name?", autoValid);
+  let firstName;
+  firstName = promptFor("What is the person's first name?", autoValid);
   let lastName = promptFor("What is the person's last name?", autoValid);
 
   let foundPerson = people.filter(function(potentialMatch){
@@ -89,15 +83,8 @@ function searchByEyeColor(people){
 
 //TODO: add other trait filter functions here.
 
-
-
-//#endregion
-
 //Display functions.
 //Functions for user interface.
-/////////////////////////////////////////////////////////////////
-//#region 
-
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
@@ -114,30 +101,26 @@ function displayPerson(person){
   alert(personInfo);
 }
 
-//#endregion
-
-
-
 //Validation functions.
 //Functions to validate user input.
-/////////////////////////////////////////////////////////////////
-//#region 
-
 //a function that takes in a question to prompt, and a callback function to validate the user input.
 //response: Will capture the user input.
 //isValid: Will capture the return of the validation function callback. true(the user input is valid)/false(the user input was not valid).
 //this function will continue to loop until the user enters something that is not an empty string("") or is considered valid based off the callback function(valid).
+
+// fixed isValid by creating an empty variable.
 function promptFor(question, valid){
+  const response = prompt(question).trim();
+  let isValid;
   do{
-    var response = prompt(question).trim();
     isValid = valid(response);
-  } while(response === ""  ||  isValid === false)
+  } while(response === "" || isValid === false)
   return response;
 }
 
 // helper function/callback to pass into promptFor to validate yes/no answers.
 function yesNo(input){
-  if(input.toLowerCase() == "yes" || input.toLowerCase() == "no"){
+  if(input.toLowerCase() === "yes" || input.toLowerCase() === "no"){
     return true;
   }
   else{
@@ -154,7 +137,7 @@ function autoValid(input){
 //Unfinished validation function you can use for any of your custom validation callbacks.
 //can be used for things like eye color validation for example.
 function customValidation(input){
-  
+
 }
 
 //#endregion
