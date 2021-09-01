@@ -7,12 +7,17 @@ let targetPerson = "";
 //#region
 
 // app is the function called to start the entire application
+
+
+
 function app(people){
+  // put this under no after find traits works
+  findTraits();
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   let searchResults;
   switch(searchType){
     case 'yes':
-      searchResults = searchByName(people);
+      // searchResults = searchByName(people);
       break;
     case 'no':
       // TODO: search by traits
@@ -24,6 +29,13 @@ function app(people){
 
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
+}
+
+function findTraits() {
+  console.log("hi");
+  let printAllOccupation = data.occupation;
+  console.log(printAllOccupation);
+
 }
 
 // Menu function to call once you find who you are looking for
@@ -64,7 +76,7 @@ function mainMenu(person, people){
   }
 }
 
-//
+
 //#endregion
 
 //Filter functions.
@@ -148,12 +160,21 @@ function displayPerson(person){
 //isValid: Will capture the return of the validation function callback. true(the user input is valid)/false(the user input was not valid).
 //this function will continue to loop until the user enters something that is not an empty string("") or is considered valid based off the callback function(valid).
 function promptFor(question, valid){
+  const response = prompt(question).trim();
   do{
-    var response = prompt(question).trim();
     isValid = valid(response);
-  } while(response === ""  ||  isValid === false)
-  return response;
+  } while(response === ""  ||  isValid === false){
+    return response;
+  }
 }
+
+// function promptFor(question, valid){
+//   do{
+//     var response = prompt(question).trim();
+//     isValid = valid(response);
+//   } while(response === ""  ||  isValid === false)
+//   return response;
+// }
 
 // helper function/callback to pass into promptFor to validate yes/no answers.
 function yesNo(input){
