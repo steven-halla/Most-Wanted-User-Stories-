@@ -1,6 +1,6 @@
 "use strict"
-
-
+let isValid = false;
+let targetPerson = "";
 //Menu functions.
 //Used for the overall flow of the application.
 /////////////////////////////////////////////////////////////////
@@ -36,13 +36,23 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
-  let displayOption = promptFor("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
+
+console.log(person)
+console.log(person[0].firstName)
+
+//*********************** */
+//they missed the index to display  the user
+//****************** */
+
+  let displayOption = promptFor("Found " + person[0].firstName + " " + person[0].lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
 
   switch(displayOption){
     case "info":
+      console.log("Name: " + person[0].firstName + " " + person[0].lastName + " Gender: " + person[0].gender + " DoB: " + person[0].dob + " height:" + person[0].height + " weight:" + person[0].weight + " eye color:" + person[0].eyeColor + " occupation: " + person[0].occupation )
     // TODO: get person's info
     break;
     case "family":
+      console.log("Name: " + person[0].firstName + " " + person[0].lastName + "has parents: " + person[0].parents + " and a spouse: " + person[0].currentSpouse)
     // TODO: get person's family
     break;
     case "descendants":
@@ -57,6 +67,7 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
+
 
 //#endregion
 
@@ -79,12 +90,25 @@ function searchByName(people){
     }
   })
   // TODO: find the person single person object using the name they entered.
+  console.log(foundPerson)
   return foundPerson;
+  
 }
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
-
+  let eyeColor = promptFor("What color eyes are we looking for?", autoValid);
+  let foundEyeColor = people.filter(function(potentialMatch){
+    if(potentialMatch.eyeColor === eyeColor){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  // TODO: find the person single person object using the name they entered.
+  console.log(foundPerson)
+  return foundPerson;
 }
 
 //TODO: add other trait filter functions here.
