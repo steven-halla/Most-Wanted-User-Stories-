@@ -54,7 +54,7 @@ function app(people){
     for (let i = 0; i < searchResults.length; ++i) {
       alert("Option: " + i + "\n " + searchResults[i].firstName + " " + searchResults[i].lastName + "\n DoB: " + searchResults[i].dob + "\nGender: " + searchResults[i].gender );
     }
-    let selectPersonFromConsole = promptFor('There are ' + searchResults.length -1 + ' entries found. \n Please select 0 -' + searchResults.length - 1 + "to continue" , autoValid)
+    let selectPersonFromConsole = promptFor('There are ' + (searchResults.length - 1) + ' entries found. \n Please select 0 -' + (searchResults.length - 1) + " to continue" , autoValid)
     if(selectPersonFromConsole > searchResults.length){
       selectPersonFromConsole = promptFor('Please select a number 0 - ' + searchResults.length, autoValid)
     }
@@ -89,11 +89,11 @@ function mainMenu(person, people, z = 0){ //default 0 for first
 //they missed the index to display  the user
 //****************** */
 
-  let displayOption = promptFor("Found " + person[z].firstName + " " + person[z].lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
+  let displayOption = promptFor("Found " + person[z].firstName + " " + person[z].lastName + " . \nDo you want to know their 'info', 'family', or 'descendants'? \nType the option you want or 'restart' or 'quit'", autoValid);
 
   switch(displayOption){
     case "info":
-      console.log("Name: " + person[z].firstName + " " + person[z].lastName + " Gender: " + person[z].gender + " DoB: " + person[z].dob + " height:" + person[0].height + " weight:" + person[z].weight + " eye color:" + person[z].eyeColor + " occupation: " + person[z].occupation )
+      displayOption = promptFor("Name: " + person[z].firstName + " " + person[z].lastName + " \nGender: " + person[z].gender + " \mDoB: " + person[z].dob + " \nheight:" + person[0].height + " \nweight:" + person[z].weight + " eye color:" + person[z].eyeColor + " occupation: " + person[z].occupation, autoValid)
       // TODO: get person's info
       break;
     case "family":
