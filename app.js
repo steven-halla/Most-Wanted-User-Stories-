@@ -15,7 +15,7 @@ const multiSearchTypes = [
   "Height", "Weight", "Eye color", "Occupation",
   "Exit"
 ];
-
+//txt
 //Menu functions.
 //Used for the overall flow of the application.
 /////////////////////////////////////////////////////////////////
