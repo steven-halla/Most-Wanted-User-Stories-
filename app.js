@@ -24,14 +24,17 @@ function app(people){
       //check response to the array choices, use customValidation to compare to array, create a case in a case?
       switch(searchTypeTwo){
           case 'First Name':
+            searchResults = searchByFirstName(people)
             break;
           case 'Last Name':
+            searchResults = searchByLastName(people)
             break;
           case 'Gender':
             searchResults = searchGender(people)
             console.log(searchResults.length)
             break;
           case 'Date of Birth':
+            searchResults = searchByDoB(people)
             break;
           case 'Eye Color':
             searchResults = searchByEyeColor(people)
