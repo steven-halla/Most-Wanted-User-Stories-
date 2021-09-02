@@ -1,7 +1,7 @@
 "use strict"
 let isValid = false;
 let targetPerson = "";
-let optionsArray = ["First name", "Last Name", "Gender", "Date of Birth", "Height", "Weight", "Eye color", "Occupation"]
+let optionsArray = ["First name", "Last Name", "Gender", "Date of Birth", "Eye color", "Occupation"]
 //Menu functions.
 //Used for the overall flow of the application.
 /////////////////////////////////////////////////////////////////
@@ -32,10 +32,6 @@ function app(people){
             console.log(searchResults.length)
             break;
           case 'Date of Birth':
-            break;
-          case 'Height':
-            break;
-          case 'Weight':
             break;
           case 'Eye Color':
             searchResults = searchByEyeColor(people)
