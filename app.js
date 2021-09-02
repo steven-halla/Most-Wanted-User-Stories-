@@ -54,6 +54,13 @@ function app(people){
   //***** create option for main menu for single search, or the results of the multisearch */
   if(searchResults.length > 1){
     //if Search result has more than 1 entry, we need to figure out which one we want.
+    let selectPersonFromConsole = promptFor('Please view the console and select a number 0 - ' + searchResults.length, autoValid)
+    if(selectPersonFromConsole > searchResults.length){
+      selectPersonFromConsole = promptFor('Please view the console and select a number 0 - ' + searchResults.length, autoValid)
+    }
+    else{
+    
+    }
   }
   else{
     mainMenu(searchResults, people);
@@ -69,7 +76,7 @@ function findTraits() {
 }
 
 // Menu function to call once you find who you are looking for
-function mainMenu(person, people){
+function mainMenu(person, people){ //default 0 for first
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
