@@ -51,7 +51,14 @@ function app(people){
   }
 
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  mainMenu(searchResults, people);
+  //***** create option for main menu for single search, or the results of the multisearch */
+  if(searchResults.length > 1){
+    //if Search result has more than 1 entry, we need to figure out which one we want.
+  }
+  else{
+    mainMenu(searchResults, people);
+  }
+  //display how many results and option to select 1
 }
 
 function findTraits() {
