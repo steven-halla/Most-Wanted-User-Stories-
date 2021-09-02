@@ -96,7 +96,7 @@ function mainMenu(person, people, z = 0){ //default 0 for first
 
   switch(displayOption){
     case "info":
-      alert("Name: " + person[z].firstName + " " + person[z].lastName + " \nGender: " + person[z].gender + " \mDoB: " + person[z].dob + " \nheight:" + person[0].height + " \nweight:" + person[z].weight + "\neye color:" + person[z].eyeColor + "\noccupation: " + person[z].occupation, autoValid)
+      alert("Name: " + person[z].firstName + " " + person[z].lastName + " \nGender: " + person[z].gender + " \mDoB: " + person[z].dob + " \nheight:" + person[z].height + " \nweight:" + person[z].weight + "\neye color:" + person[z].eyeColor + "\noccupation: " + person[z].occupation, autoValid)
       // TODO: get person's info
       break;
     case "family":
@@ -104,7 +104,9 @@ function mainMenu(person, people, z = 0){ //default 0 for first
       // TODO: get person's family
       break;
     case "descendants":
-      // TODO: get the guy/girls kids descendants
+      let foundDescendants = getDecendants(person[z], people)
+      console.log(foundDescendants)
+      alert("Name: " + person[z].firstName + " " + person[z].lastName + "is the parents of: ")
       break;
     case "restart":
       app(people); // restart
@@ -223,6 +225,22 @@ function searchByOccupation(people){
   return foundOccupation;
 }
 
+function getDecendants(person, people){
+  //get the persons ID, then find it in the parents array, could be 0 or 1
+  let descendantsID = new Array()
+  let personsID = person.id
+  console.log(personsID)
+  let foundDecendants = people.filter(function(descendantsID){
+    if(descendantsID.parents.length >= 1){
+      
+    }
+    else{
+      return false
+    }
+  })
+  return foundDecendants;
+}
+
 
 //#endregion
 
@@ -297,7 +315,7 @@ function autoValid(input){
 //can be used for things like eye color validation for example.
 function customValidation(input){
  //we need to load the array optionsArray to compare our response
-  if(input == "First name" || input == "Last name" || input == "Gender" || input == "Date of Birth" || input == "Height" || input == "Weight" || input == "Eye color" || input == "Occupation"){
+  if(input == "First name" || input == "Last name" || input == "Gender" || input == "Date of Birth" || input == "Eye color" || input == "Occupation"){
     return true;
     }
   else{
