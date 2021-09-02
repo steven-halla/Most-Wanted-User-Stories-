@@ -232,7 +232,7 @@ function getDecendants(person, people){
   console.log(personsID)
   let foundDecendants = people.filter(function(descendantsID){
     if(descendantsID.parents.length >= 1){
-        if(descendantsID.parents[0] == personsID || descendantsID.parents[1]){
+        if(descendantsID.parents[0] == personsID || descendantsID.parents[1] == personsID){
             console.log(person.firstName + 'has a parent of: ' + descendantsID.firstName)
             return true;
         }
