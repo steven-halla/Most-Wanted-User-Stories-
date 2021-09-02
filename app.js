@@ -58,12 +58,12 @@ function app(people){
     for (let i = 0; i < searchResults.length; ++i) {
       alert("Option: " + i + "\n " + searchResults[i].firstName + " " + searchResults[i].lastName + "\n DoB: " + searchResults[i].dob + "\nGender: " + searchResults[i].gender );
     }
-    let selectPersonFromConsole = promptFor('There are ' + searchResults.length + ' entries found. \n Please select 0 -' + searchResults.length + "to continue" , autoValid)
+    let selectPersonFromConsole = promptFor('There are ' + searchResults.length -1 + ' entries found. \n Please select 0 -' + searchResults.length - 1 + "to continue" , autoValid)
     if(selectPersonFromConsole > searchResults.length){
       selectPersonFromConsole = promptFor('Please select a number 0 - ' + searchResults.length, autoValid)
     }
     else{
-    
+      mainMenu(searchResults, people, selectPersonFromConsole);
     }
   }
   else{
@@ -80,7 +80,7 @@ function findTraits() {
 }
 
 // Menu function to call once you find who you are looking for
-function mainMenu(person, people){ //default 0 for first
+function mainMenu(person, people, z = 0){ //default 0 for first
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
 
@@ -93,15 +93,15 @@ function mainMenu(person, people){ //default 0 for first
 //they missed the index to display  the user
 //****************** */
 
-  let displayOption = promptFor("Found " + person[0].firstName + " " + person[0].lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
+  let displayOption = promptFor("Found " + person[z].firstName + " " + person[z].lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", autoValid);
 
   switch(displayOption){
     case "info":
-      console.log("Name: " + person[0].firstName + " " + person[0].lastName + " Gender: " + person[0].gender + " DoB: " + person[0].dob + " height:" + person[0].height + " weight:" + person[0].weight + " eye color:" + person[0].eyeColor + " occupation: " + person[0].occupation )
+      console.log("Name: " + person[z].firstName + " " + person[z].lastName + " Gender: " + person[z].gender + " DoB: " + person[z].dob + " height:" + person[0].height + " weight:" + person[z].weight + " eye color:" + person[z].eyeColor + " occupation: " + person[z].occupation )
       // TODO: get person's info
       break;
     case "family":
-      console.log("Name: " + person[0].firstName + " " + person[0].lastName + "has parents: " + person[0].parents + " and a spouse: " + person[0].currentSpouse)
+      console.log("Name: " + person[z].firstName + " " + person[z].lastName + "has parents: " + person[z].parents + " and a spouse: " + person[z].currentSpouse)
       // TODO: get person's family
       break;
     case "descendants":
