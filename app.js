@@ -1,15 +1,13 @@
 "use strict"
 let isValid = false;
 let targetPerson = "";
+let optionsArray = ["First name", "Last Name", "Gender", "Date of Birth", "Height", "Weight", "Eye color", "Occupation"]
 //Menu functions.
 //Used for the overall flow of the application.
 /////////////////////////////////////////////////////////////////
 //#region
 
 // app is the function called to start the entire application
-
-
-
 function app(people){
   // put this under no after find traits works
   findTraits();
@@ -21,6 +19,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
+      let searchType = promptFor('How do you want to search? "First name" "Last Name" "Gender" "Date of Birth" "Height" "Weight" "Eye color" ?')
       break;
     default:
       app(people); // restart app
