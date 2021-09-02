@@ -15,11 +15,33 @@ function app(people){
   let searchResults;
   switch(searchType){
     case 'yes':
-      // searchResults = searchByName(people);
+      searchResults = searchByName(people);
       break;
     case 'no':
       // TODO: search by traits
-      let searchType = promptFor('How do you want to search? "First name" "Last Name" "Gender" "Date of Birth" "Height" "Weight" "Eye color" ?')
+      let searchTypeTwo = promptFor('How do you want to search? ' + optionsArray, customValidation) //in the future add rotary dial type option 1,2,3 or typing in the function
+      console.log(searchTypeTwo)
+      //check response to the array choices, use customValidation to compare to array, create a case in a case?
+      switch(searchTypeTwo){
+          case 'First Name':
+            break;
+          case 'Last Name':
+            break;
+          case 'Gender':
+            break;
+          case 'Date of Birth':
+            break;
+          case 'Height':
+            break;
+          case 'Weight':
+            break;
+          case 'Eye Color':
+            searchResults = searchByEyeColor(people)
+            break;
+          case 'Occupation':
+            searchResults = searchByOccupation(people)      
+            break;
+      }
       break;
     default:
       app(people); // restart app
@@ -142,6 +164,19 @@ function searchByDoB(people){
   console.log(founddateOfBirth);
   return founddateOfBirth;
 }
+function searchByOccupation(people){
+  let occupationSearch = promptFor("What occupation do you need?", autoValid);
+  let foundOccupation = people.filter(function(potentialMatch){
+    if(potentialMatch.dob === occupationSearch){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  console.log(foundOccupation);
+  return foundOccupation;
+}
 
 
 //#endregion
@@ -216,7 +251,16 @@ function autoValid(input){
 //Unfinished validation function you can use for any of your custom validation callbacks.
 //can be used for things like eye color validation for example.
 function customValidation(input){
-
+ //we need to load the array optionsArray to compare our response
+  for(let index = 0; index = optionsArray.length; index++){
+    if(optionsArray[index].toLocaleLowerCase() == input.toLocaleLowerCase()){ //we will lowercase everything just in case SoMeoNe tYpeS fUnnY
+        console.log('User has selected' + optionsArray[index])
+        return true;
+    }
+    else{
+      return false;
+    }
+}
 }
 
 //#endregion
