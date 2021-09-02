@@ -164,7 +164,7 @@ function searchByLastName(people){
   let lastName = promptFor("What is the person's last name?", autoValid);
 
   let foundPerson = people.filter(function(potentialMatch){
-    if(potentialMatch.firstName === firstName && potentialMatch.lastName === lastName){
+    if(potentialMatch.lastName === lastName){
       return true;
     }
     else{
@@ -232,8 +232,7 @@ function searchByOccupation(people){
 function getDecendants(person, people){
   //get the persons ID, then find it in the parents array, could be 0 or 1
   let descendantsID = new Array()
-  let personsID = person.id
-  console.log(personsID)
+  let personsID = person.id;
   let foundDecendants = people.filter(function(descendantsID){
     if(descendantsID.parents.length >= 1){
         if(descendantsID.parents[0] == personsID || descendantsID.parents[1] == personsID){
@@ -248,6 +247,18 @@ function getDecendants(person, people){
   return foundDecendants;
 }
 
+function getFamilyMembers(person, people){
+  //Create a function:  use the ID of the current person, we can pull their parents id's and their spouses. use the parents ID to find their kids from descendants function
+  let familyMembersID = new Array()
+  let personsID = person.id
+//does my guy/gal have parents?
+if(person.parents.length > 0){
+  
+  }
+//does my guy/gal have a spouse?
+
+//does my guy/gal have siblings?
+}
 
 //#endregion
 
