@@ -28,6 +28,8 @@ function app(people){
           case 'Last Name':
             break;
           case 'Gender':
+            searchResults = searchGender(people)
+            console.log(searchResults.length)
             break;
           case 'Date of Birth':
             break;
@@ -167,7 +169,7 @@ function searchByDoB(people){
 function searchByOccupation(people){
   let occupationSearch = promptFor("What occupation do you need?", autoValid);
   let foundOccupation = people.filter(function(potentialMatch){
-    if(potentialMatch.dob === occupationSearch){
+    if(potentialMatch.occupation === occupationSearch){
       return true;
     }
     else{
@@ -252,15 +254,11 @@ function autoValid(input){
 //can be used for things like eye color validation for example.
 function customValidation(input){
  //we need to load the array optionsArray to compare our response
-  for(let j = 0; j = optionsArray.length; j++){
-    console.log(j)
-    if(optionsArray[j] == input){
-        console.log('User has selected' + optionsArray[j])
-        return true;
+  if(input == "First name" || input == "Last name" || input == "Gender" || input == "Date of Birth" || input == "Height" || input == "Weight" || input == "Eye color" || input == "Occupation"){
+    return true;
     }
-    else{
-      return false;
-    }
+  else{
+    return false;
 }
 }
 
