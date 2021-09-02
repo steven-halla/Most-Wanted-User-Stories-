@@ -93,11 +93,11 @@ function mainMenu(person, people, z = 0){ //default 0 for first
 
   switch(displayOption){
     case "info":
-      displayOption = promptFor("Name: " + person[z].firstName + " " + person[z].lastName + " \nGender: " + person[z].gender + " \mDoB: " + person[z].dob + " \nheight:" + person[0].height + " \nweight:" + person[z].weight + " eye color:" + person[z].eyeColor + " occupation: " + person[z].occupation, autoValid)
+      alert("Name: " + person[z].firstName + " " + person[z].lastName + " \nGender: " + person[z].gender + " \mDoB: " + person[z].dob + " \nheight:" + person[0].height + " \nweight:" + person[z].weight + " eye color:" + person[z].eyeColor + " occupation: " + person[z].occupation, autoValid)
       // TODO: get person's info
       break;
     case "family":
-      console.log("Name: " + person[z].firstName + " " + person[z].lastName + "has parents: " + person[z].parents + " and a spouse: " + person[z].currentSpouse)
+      alert("Name: " + person[z].firstName + " " + person[z].lastName + "has parents: " + person[z].parents + " and a spouse: " + person[z].currentSpouse)
       // TODO: get person's family
       break;
     case "descendants":
