@@ -252,9 +252,10 @@ function autoValid(input){
 //can be used for things like eye color validation for example.
 function customValidation(input){
  //we need to load the array optionsArray to compare our response
-  for(let index = 0; index = optionsArray.length; index++){
-    if(optionsArray[index].toLocaleLowerCase() == input.toLocaleLowerCase()){ //we will lowercase everything just in case SoMeoNe tYpeS fUnnY
-        console.log('User has selected' + optionsArray[index])
+  for(let j = 0; j = optionsArray.length; j++){
+    console.log(j)
+    if(optionsArray[j] == input){
+        console.log('User has selected' + optionsArray[j])
         return true;
     }
     else{
