@@ -101,7 +101,7 @@ function mainMenu(person, people, z = 0){ //default 0 for first
       // TODO: get person's family
       break;
     case "descendants":
-      // TODO: get person's descendants
+      // TODO: get the guy/girls kids descendants
       break;
     case "restart":
       app(people); // restart
@@ -134,13 +134,39 @@ function searchByName(people){
       return false;
     }
   })
-  // TODO: find the person single person object using the name they entered.
   console.log(foundPerson)
   return foundPerson;
 
 }
+function searchByFirstName(people){
+  let firstName = promptFor("What is the person's first name?", autoValid);
+  let foundPerson = people.filter(function(potentialMatch){
+    if(potentialMatch.firstName === firstName){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  console.log(foundPerson)
+  return foundPerson;
+}
+function searchByLastName(people){
+  let lastName = promptFor("What is the person's last name?", autoValid);
 
-//finished function to search through an array of people to find matching eye colors. Use searchByName as reference.
+  let foundPerson = people.filter(function(potentialMatch){
+    if(potentialMatch.firstName === firstName && potentialMatch.lastName === lastName){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  )
+  console.log(foundPerson)
+  return foundPerson;
+
+}
 function searchByEyeColor(people){
   let eyeColor = promptFor("What color eyes are we looking for?", autoValid);
   let foundEyeColor = people.filter(function(potentialMatch){
