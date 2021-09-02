@@ -54,6 +54,7 @@ function app(people){
   //***** create option for main menu for single search, or the results of the multisearch */
   if(searchResults.length > 1){
     //if Search result has more than 1 entry, we need to figure out which one we want.
+    console.log(searchResults)
     let selectPersonFromConsole = promptFor('Please view the console and select a number 0 - ' + searchResults.length, autoValid)
     if(selectPersonFromConsole > searchResults.length){
       selectPersonFromConsole = promptFor('Please view the console and select a number 0 - ' + searchResults.length, autoValid)
