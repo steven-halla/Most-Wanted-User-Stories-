@@ -106,7 +106,11 @@ function mainMenu(person, people, z = 0){ //default 0 for first
     case "descendants":
       let foundDescendants = getDecendants(person[z], people)
       console.log(foundDescendants)
-      alert("Name: " + person[z].firstName + " " + person[z].lastName + "is the parents of: ")
+      alert("Name: " + person[z].firstName + " " + person[z].lastName + "has " + (foundDescendants.length - 1) +" kids. They are:")
+      for (let i = 0; i < foundDescendants.length; ++i) {
+        alert("First Name: " + searchResults[i].firstName + "   " + searchResults[i].lastName + "\n DoB: " + searchResults[i].dob + "\nGender: " + searchResults[i].gender );
+      }
+
       break;
     case "restart":
       app(people); // restart
