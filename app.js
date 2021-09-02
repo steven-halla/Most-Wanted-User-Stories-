@@ -55,9 +55,12 @@ function app(people){
   if(searchResults.length > 1){
     //if Search result has more than 1 entry, we need to figure out which one we want.
     console.log(searchResults)
-    let selectPersonFromConsole = promptFor('Please view the console and select a number 0 - ' + searchResults.length, autoValid)
+    for (let i = 0; i < searchResults.length; ++i) {
+      alert("Option: " + i + "\n " + searchResults[i].firstName + " " + searchResults[i].lastName + "\n DoB: " + searchResults[i].dob + "\nGender: " + searchResults[i].gender );
+    }
+    let selectPersonFromConsole = promptFor('There are ' + searchResults.length + ' entries found. \n Please select 0 -' + searchResults.length + "to continue" , autoValid)
     if(selectPersonFromConsole > searchResults.length){
-      selectPersonFromConsole = promptFor('Please view the console and select a number 0 - ' + searchResults.length, autoValid)
+      selectPersonFromConsole = promptFor('Please select a number 0 - ' + searchResults.length, autoValid)
     }
     else{
     
