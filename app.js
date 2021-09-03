@@ -167,21 +167,21 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
     case "family":
                       //lets get my persons parents
     let personsParents = getParents(person, people)
-                          //does my guy/gal have kids?
+    console.log(person.firstName + "'s parents:")
+    console.log(personsParents)                    
+    //does my guy/gal have kids?
     let personsKids = getDecendants(person, people)
-                      //does my guy/gal have a spouse?
+    console.log(person.firstName + "'s kids")
+    console.log(personsKids) 
+                     //does my guy/gal have a spouse?
     let personsSpouse = getSpouse(person, people)
-                      //does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other
+    console.log('The spouse')
+    console.log(personsSpouse)      
+                //does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other
     let personsSiblings = getSiblings(person, people, personsParents)
 //Pulled my info, now we must display it somehow
-console.log('Persons Kids')
-console.log(personsKids)
-console.log('The spouse')
-console.log(personsSpouse)
-console.log('the siblings')
-console.log(personsSiblings)
-
-      alert("Name: " + person.firstName + " " + person.lastName + "has " + personParents.length + " parents" + "\n" )
+    console.log('the siblings')
+    console.log(personsSiblings)
       break;
     case "descendants":
       let foundDescendants = getDecendants(searchResults[z], people)
@@ -360,16 +360,17 @@ function searchByOccupation(people) {
 }
 
 function getSiblings(person, people, personsParents){
-let personID = person.id
-let parentOne = 0
-let parentTwo = 0
-  if(personsParents.length = 0){
-    //No parents listed, so no siblings can be found
+  let personID = person.id
+  let parentOne = personsParents[0].id
+  let parentTwo = personsParents[1].id
+  let parentsNumber = person.parents
+  if(parentsNumber.length = 0){
+    //No parents listed
   }
-  else if(personsParents.length == 1){
+  else if(parentsNumber.length == 1){
     parentOne = personsParents[0].id
   }
-  else if(personsParents.length == 2){
+  else if(parentsNumber.length == 2){
     parentOne = personsParents[0].id
     parentTwo = personsParents[1].id
   }
@@ -396,17 +397,18 @@ return foundSiblings;
 
 function getParents(person, people){
   let personID = person.id
-  let parentOne = 0
-  let parentTwo = 0
-  if(personsParents.length = 0){
+  let parentOne = person.parents[0]
+  let parentTwo = person.parents[1]
+  let parentsNumber = person.parents
+  if(parentsNumber.length = 0){
     //No parents listed
   }
-  else if(personsParents.length == 1){
-    parentOne = personsParents[0].id
+  else if(parentsNumber.length == 1){
+    parentOne = person.parents[0]
   }
-  else if(personsParents.length == 2){
-    parentOne = personsParents[0].id
-    parentTwo = personsParents[1].id
+  else if(parentsNumber.length == 2){
+    parentOne = person.parents[0]
+    parentTwo = person.parents[1]
   }
   let foundParents = people.filter(function(potentialMatch){
     if(potentialMatch.id === parentOne || potentialMatch.id === parentTwo){
