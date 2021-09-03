@@ -314,21 +314,20 @@ function getDecendants(person, people){
   return foundDecendants;
 }
 function getSpouse(person, people){
-  //get the persons ID, then find it in the parents array, could be 0 or 1
-  let descendantsID = new Array()
-  let personSpouse = person.spouse;
-  let foundSpouse = people.filter(function(descendantsID){
-    if(descendantsID.spouse.length >= 1){
-        if(descendantsID.spouse[0] == personSpouse){
-            console.log(person.firstName + ' is the parent of: ' + descendantsID.firstName)
-            return true;
+  if(person.currentSpouse != null){
+    let spouseID = person.currentSpouse
+    let spouseRecord = people.filter(function(potentialMatch){
+      if(potentialMatch.id === spouseID){
+        return true;
         }
-    }
-    else{
-      return false
-    }
-  })
-  return foundSpouse;
+      else{
+        return false;
+      }
+  
+      })
+  console.log(spouseRecord)
+  return spouseRecord;
+  }
 }
 
 function searchByOccupation(people) {
@@ -344,6 +343,13 @@ function searchByOccupation(people) {
   return foundOccupation;
 }
 
+function getSiblings(person, people, personsParents){
+
+
+
+
+}
+
 function getFamilyMembers(person, people){
   //Create a function:  use the ID of the current person, we can pull their parents id's and their spouses. use the parents ID to find their kids from descendants function
   let familyMembersID = new Array()
@@ -353,6 +359,7 @@ function getFamilyMembers(person, people){
 //does my guy/gal have a spouse?
   let personsSpouse = getSpouse(person, people)
 //does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other
+  let personsSiblings = getSiblings(person, people, personsParents)
 }
 
 //#endregion
@@ -446,6 +453,3 @@ function multiSearchTypeValidator(input) {
 }
 
 //#endregion
-
-
-
