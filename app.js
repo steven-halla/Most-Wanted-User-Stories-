@@ -189,7 +189,9 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
 
                      //does my guy/gal have a spouse?
     let personsSpouse = getSpouse(person, people)
+    if (personsSpouse.length > 0){
     const spouseVariable = personsSpouse[0];
+    
     console.log('The spouse')
     console.log(personsSpouse)
     if (personsSpouse[0].id == person.currentSpouse){
@@ -198,6 +200,7 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
     else{
       alert(person.firstName + " doesnt have a spouse")
     }    
+  }
                 //does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other
     let personsSiblings = getSiblings(person, people, personsParents)
     alert(person.firstName + " has " + personsSiblings.length + " siblings")
@@ -254,7 +257,7 @@ function searchByName(people) {
 function searchByFirstName(people){
   let firstName = promptFor("What is the person's first name?", autoValid);
   let foundPerson = people.filter(function(potentialMatch){
-    if(potentialMatch.firstName === firstName){
+    if(potentialMatch.firstName == firstName){
       return true;
     }
     else{
@@ -491,7 +494,7 @@ function promptFor(question, validator) {
     isValid = validator(response);
   } while (!isValid || !response);
 
-  return response.toLowerCase();
+  return response;
 }
 
 // function promptFor(question, valid){
