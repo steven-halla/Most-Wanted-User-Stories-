@@ -362,9 +362,13 @@ let parentTwo = 0
 
   let foundSiblings = people.filter(function(descendantsID){
     if(descendantsID.parents.length >= 1){
-      if(descendantsID.parents[0] == personsID || descendantsID.parents[1] == personsID){
-          console.log(person.firstName + ' is the parent of: ' + descendantsID.firstName)
-          return true;
+      if(descendantsID.parents[0] == parentOne || descendantsID.parents[1] == parentOne || descendantsID.parents[0] == parentTwo || descendantsID.parents[1] == parentTwo){
+          console.log(person.firstName + ' and ' + descendantsID.firstName + ' has the same parents')
+          
+          if(descendantsID.id != personID){
+            return true;
+          }
+            
       }
   }
   else{
