@@ -168,17 +168,41 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
                       //lets get my persons parents
     let personsParents = getParents(person, people)
     console.log(person.firstName + "'s parents:")
-    console.log(personsParents)                    
+    console.log(personsParents)
+    if(personsParents == 0){
+      alert(person.firstName + " doesnt have any parents")
+    } 
+    else if (personsParents == 1){
+      alert(person.firstName + " has 1 parent\n" + "They are:\n" + personsParents[0].firstName + " " + personsParents[0].lastName)
+    } 
+    else if (personsParents == 2){
+      alert(person.firstName + " has 2 parents\n" + "They are:\n" + personsParents[0].firstName + " " + personsParents[0].lastName + "\n" + personsParents[1].firstName + personsParents[1].lastName)
+    }                  
     //does my guy/gal have kids?
     let personsKids = getDecendants(person, people)
     console.log(person.firstName + "'s kids")
-    console.log(personsKids) 
+    console.log(personsKids)
+    alert(person.firstName + ' has ' + personsKids.length + " kids")
+    for (let i = 0; i < personsKids.length; ++i) {
+      alert("First Name: " + personsKids[i].firstName + "   " + personsKids[i].lastName + "\n DoB: " + personsKids[i].dob + "\nGender: " + personsKids[i].gender );
+    }
+
                      //does my guy/gal have a spouse?
     let personsSpouse = getSpouse(person, people)
     console.log('The spouse')
-    console.log(personsSpouse)      
+    console.log(personsSpouse)
+    if (personsSpouse.length = 0){
+      alert(person.firstName + " doesnt have a spouse")
+    }
+    else{
+      alert(person.firstName + "has a spouse: \n" + personsSpouse[0].firstName + " " + personsSpouse.lastName + "/n" + personsSpouse.gender + "             " + personsSpouse.dob)
+    }      
                 //does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other
     let personsSiblings = getSiblings(person, people, personsParents)
+    alert(person.firstName + " has " + personsSiblings.length + " siblings")
+    for (let i = 0; i < personsSiblings.length; ++i) {
+      alert("First Name: " + personsSiblings[i].firstName + "   " + personsSiblings[i].lastName + "\n DoB: " + personsSiblings[i].dob + "\nGender: " + personsSiblings[i].gender );
+    }
 //Pulled my info, now we must display it somehow
     console.log('the siblings')
     console.log(personsSiblings)
