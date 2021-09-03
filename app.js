@@ -165,7 +165,23 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
       alert("Name: " + person.firstName + " " + person.lastName + " \nGender: "  + person.gender + " \mDoB: " + person.dob + " \nheight:" + person.height + " \nweight:" + person.weight + "\neye color:" + person.eyeColor + "\noccupation: " + person.occupation, autoValid)
       break;
     case "family":
-      alert("Name: " + person.firstName + " " + person.lastName + "has parents: " + person.parents + " and a spouse: " + person.currentSpouse)
+                      //lets get my persons parents
+    let personsParents = getParents(person, people)
+                          //does my guy/gal have kids?
+    let personsKids = getDecendants(person, people)
+                      //does my guy/gal have a spouse?
+    let personsSpouse = getSpouse(person, people)
+                      //does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other
+    let personsSiblings = getSiblings(person, people, personsParents)
+//Pulled my info, now we must display it somehow
+console.log('Persons Kids')
+console.log(personsKids)
+console.log('The spouse')
+console.log(personsSpouse)
+console.log('the siblings')
+console.log(personsSiblings)
+
+      alert("Name: " + person.firstName + " " + person.lastName + "has " + personParents.length + " parents" + "\n" )
       break;
     case "descendants":
       let foundDescendants = getDecendants(searchResults[z], people)
@@ -378,16 +394,31 @@ let parentTwo = 0
 return foundSiblings;
 }
 
-function getFamilyMembers(person, people){
-  //Create a function:  use the ID of the current person, we can pull their parents id's and their spouses. use the parents ID to find their kids from descendants function
-  let familyMembersID = new Array()
-  let personsID = person.id
-//does my guy/gal have parents?
-  let personsParents = getDecendants(person, people)
-//does my guy/gal have a spouse?
-  let personsSpouse = getSpouse(person, people)
-//does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other
-  let personsSiblings = getSiblings(person, people, personsParents)
+function getParents(person, people){
+  let personID = person.id
+  let parentOne = 0
+  let parentTwo = 0
+  if(personsParents.length = 0){
+    //No parents listed
+  }
+  else if(personsParents.length == 1){
+    parentOne = personsParents[0].id
+  }
+  else if(personsParents.length == 2){
+    parentOne = personsParents[0].id
+    parentTwo = personsParents[1].id
+  }
+  let foundParents = people.filter(function(potentialMatch){
+    if(potentialMatch.id === parentOne || potentialMatch.id === parentTwo){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  console.log(foundParents);
+  return foundParents;
+
 }
 
 //#endregion
