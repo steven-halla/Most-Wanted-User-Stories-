@@ -313,6 +313,23 @@ function getDecendants(person, people){
   })
   return foundDecendants;
 }
+function getSpouse(person, people){
+  //get the persons ID, then find it in the parents array, could be 0 or 1
+  let descendantsID = new Array()
+  let personSpouse = person.spouse;
+  let foundSpouse = people.filter(function(descendantsID){
+    if(descendantsID.spouse.length >= 1){
+        if(descendantsID.spouse[0] == personSpouse){
+            console.log(person.firstName + ' is the parent of: ' + descendantsID.firstName)
+            return true;
+        }
+    }
+    else{
+      return false
+    }
+  })
+  return foundSpouse;
+}
 
 function searchByOccupation(people) {
   let occupationSearch = promptFor("What occupation do you need?", autoValid);
@@ -332,12 +349,10 @@ function getFamilyMembers(person, people){
   let familyMembersID = new Array()
   let personsID = person.id
 //does my guy/gal have parents?
-if(person.parents.length > 0){
-
-  }
+  let personsParents = getDecendants(person, people)
 //does my guy/gal have a spouse?
-
-//does my guy/gal have siblings?
+  let personsSpouse = getSpouse(person, people)
+//does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other siblings
 }
 
 //#endregion
