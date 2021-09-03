@@ -172,7 +172,7 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
       console.log(foundDescendants)
       alert("Name: " + person.firstName + " " + person.lastName + "has " + (foundDescendants.length) +" kids. They are:")
       for (let i = 0; i < foundDescendants.length; ++i) {
-        alert("First Name: " + searchResults[i].firstName + "   " + searchResults[i].lastName + "\n DoB: " + searchResults[i].dob + "\nGender: " + searchResults[i].gender );
+        alert("First Name: " + foundDescendants[i].firstName + "   " + foundDescendants[i].lastName + "\n DoB: " + foundDescendants[i].dob + "\nGender: " + foundDescendants[i].gender );
       }
 
       break;
@@ -352,7 +352,7 @@ function getFamilyMembers(person, people){
   let personsParents = getDecendants(person, people)
 //does my guy/gal have a spouse?
   let personsSpouse = getSpouse(person, people)
-//does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other siblings
+//does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other
 }
 
 //#endregion
