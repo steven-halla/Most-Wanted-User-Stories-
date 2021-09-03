@@ -5,14 +5,14 @@ let targetPerson = "";
 
 const singleSearchTypes = [
   "First name", "Last Name", "Gender", "Date of Birth",
-  "Height", "Weight", "Eye color", "Occupation",
+  "Eye color", "Occupation",
   "Multi",
 ];
 
 // we use these search types within multiSearch
 const multiSearchTypes = [
   "First name", "Last Name", "Gender", "Date of Birth",
-  "Height", "Weight", "Eye color", "Occupation",
+  "Eye color", "Occupation",
   "Exit"
 ];
 //txt
@@ -170,7 +170,7 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
     case "descendants":
       let foundDescendants = getDecendants(searchResults[z], people)
       console.log(foundDescendants)
-      alert("Name: " + person.firstName + " " + person.lastName + "has " + (foundDescendants.length - 1) +" kids. They are:")
+      alert("Name: " + person.firstName + " " + person.lastName + "has " + (foundDescendants.length) +" kids. They are:")
       for (let i = 0; i < foundDescendants.length; ++i) {
         alert("First Name: " + searchResults[i].firstName + "   " + searchResults[i].lastName + "\n DoB: " + searchResults[i].dob + "\nGender: " + searchResults[i].gender );
       }
