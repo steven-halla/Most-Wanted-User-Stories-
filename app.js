@@ -195,7 +195,7 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
       alert(person.firstName + " doesnt have a spouse")
     }
     else{
-      alert(person.firstName + "has a spouse: \n" + personsSpouse[0].firstName + " " + personsSpouse[0].lastName + "/n" + personsSpouse[0].gender + "             " + personsSpouse.dob)
+      alert(person.firstName + "has a spouse: \n" + personsSpouse[0].firstName + " " + personsSpouse[0].lastName + "/n" + personsSpouse[0].gender + "             " + personsSpouse[0].dob)
     }      
                 //does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other
     let personsSiblings = getSiblings(person, people, personsParents)
