@@ -344,10 +344,34 @@ function searchByOccupation(people) {
 }
 
 function getSiblings(person, people, personsParents){
+let personID = person.id
+let parentOne = 0
+let parentTwo = 0
+  if(personsParents.length = 0){
+    //No parents listed, so no siblings can be found
+  }
+  else if(personsParents.length == 1){
+    parentOne = personsParents[0].id
+  }
+  else if(personsParents.length == 2){
+    parentOne = personsParents[0].id
+    parentTwo = personsParents[1].id
+  }
 
+// now that i have the parents ID in a variable, i can search the people array for parents with either of those id's, they shall now be known as siblings or step-siblings?
 
-
-
+  let foundSiblings = people.filter(function(descendantsID){
+    if(descendantsID.parents.length >= 1){
+      if(descendantsID.parents[0] == personsID || descendantsID.parents[1] == personsID){
+          console.log(person.firstName + ' is the parent of: ' + descendantsID.firstName)
+          return true;
+      }
+  }
+  else{
+    return false
+  }
+})
+return foundSiblings;
 }
 
 function getFamilyMembers(person, people){
