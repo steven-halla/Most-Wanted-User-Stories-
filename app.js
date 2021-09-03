@@ -189,18 +189,15 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
 
                      //does my guy/gal have a spouse?
     let personsSpouse = getSpouse(person, people)
-    if (personsSpouse.length > 0){
-    const spouseVariable = personsSpouse[0];
-    
     console.log('The spouse')
     console.log(personsSpouse)
-    if (personsSpouse[0].id == person.currentSpouse){
+    if (personsSpouse != undefined){
+      const spouseVariable = personsSpouse[0];
     alert(person.firstName + " has a spouse: \n" + spouseVariable.firstName + " " + spouseVariable.lastName + "\n " + spouseVariable.gender + "             " + spouseVariable.dob)
   }
     else{
       alert(person.firstName + " doesnt have a spouse")
     }    
-  }
                 //does my guy/gal have siblings?, use the personParents, to get there descendants, then subtract our person to find other
     let personsSiblings = getSiblings(person, people, personsParents)
     alert(person.firstName + " has " + personsSiblings.length + " siblings")
