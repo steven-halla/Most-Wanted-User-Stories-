@@ -413,6 +413,7 @@ function autoValid(input) {
 //can be used for things like eye color validation for example.
 
 function singleSearchTypeValidator(input) {
+  input = input.toLowerCase()
   if (input === "first name" || input === "last name" || input === "gender" || input === "date of birth" || input === "height" || input === "weight" || input === "eye color" || input === "occupation" || input === "multi") {
     return true;
   } else {
@@ -421,6 +422,7 @@ function singleSearchTypeValidator(input) {
 }
 
 function multiSearchTypeValidator(input) {
+  input = input.toLowerCase()
   if (input === "first name" || input === "last name" || input === "gender" || input === "date of birth" || input === "height" || input === "weight" || input === "eye color" || input === "occupation" || input === "exit") {
     return true;
   } else {
