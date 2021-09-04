@@ -27,7 +27,7 @@ function app(people) {
       break;
     case 'no':
       // TODO: search by criteria
-      let searchType = promptFor('How do you want to search? ' + singleSearchTypes, singleSearchTypeValidator) //in the future add rotary dial type option 1,2,3 or typing in the function
+      let searchType = promptFor('How do you want to search? ' + singleSearchTypes, singleSearchTypeValidator)
       console.log("search type: " + searchType);
       switch (searchType) {
         case 'first name':
@@ -69,7 +69,8 @@ function app(people) {
 
     let filteredPeople = people;
     for (let i = 0; i < 3; i++) {
-      let searchType = promptFor('Multi-search: Pick criteria ' + i + 1 + ' of 5(max): ' + multiSearchTypes, multiSearchTypeValidator) //in the future add rotary dial type option 1,2,3 or typing in the function
+      let searchType = promptFor('Multi-search: Pick criteria ' + i + 1 + ' of 5(max): '
+        + multiSearchTypes, multiSearchTypeValidator) //in the future add rotary dial type option 1,2,3 or typing in the function
       console.log(searchType)
       switch (searchType) {
         case "eye color":
@@ -100,9 +101,11 @@ function app(people) {
   }
   else if(searchResults.length > 1) {
     for (let i = 0; i < searchResults.length; ++i) {
-      alert("Option: " + i + "\n " + searchResults[i].firstName + " " + searchResults[i].lastName + "\n DoB: " + searchResults[i].dob + "\nGender: " + searchResults[i].gender + "\nEye Color: " + searchResults[i].eyeColor );
+      alert("Option: " + i + "\n " + searchResults[i].firstName + " " + searchResults[i].lastName + "\n DoB: "
+        + searchResults[i].dob + "\nGender: " + searchResults[i].gender + "\nEye Color: " + searchResults[i].eyeColor );
     }
-    let selectPersonFromConsole = promptFor('There are ' + searchResults.length + ' entries found. \n Please select 0 - ' + (searchResults.length - 1) + " to continue" , autoValid)
+    let selectPersonFromConsole = promptFor('There are ' + searchResults.length
+      + ' entries found. \n Please select 0 - ' + (searchResults.length - 1) + " to continue" , autoValid)
     while(selectPersonFromConsole < 0 || selectPersonFromConsole > searchResults.length){
       selectPersonFromConsole = promptFor('Please select a number 0 - ' + searchResults.length, autoValid)
     }
@@ -119,11 +122,14 @@ function mainMenu(searchResults, people, z = 0){
     return app(people); // restart
   }
   const person = searchResults[z];
-  let displayOption = promptFor("Found " + person.firstName + " " + person.lastName + " . \nDo you want to know their 'info', 'family', or 'descendants'? \nType the option you want or 'restart' or 'quit'", autoValid);
+  let displayOption = promptFor("Found " + person.firstName + " " + person.lastName
+    + " . \nDo you want to know their 'info', 'family', or 'descendants'? \nType the option you want or 'restart' or 'quit'", autoValid);
 
   switch (displayOption) {
     case "info":
-      alert("Name: " + person.firstName + " " + person.lastName + " \nGender: "  + person.gender + " \mDoB: " + person.dob + " \nheight:" + person.height + " \nweight:" + person.weight + "\neye color:" + person.eyeColor + "\noccupation: " + person.occupation, autoValid)
+      alert("Name: " + person.firstName + " " + person.lastName + " \nGender: "  + person.gender
+        + " \mDoB: " + person.dob + " \nheight:" + person.height + " \nweight:" + person.weight + "\neye color:"
+        + person.eyeColor + "\noccupation: " + person.occupation, autoValid)
       break;
     case "family":
       //lets get my persons parents
@@ -134,24 +140,28 @@ function mainMenu(searchResults, people, z = 0){
         alert(person.firstName + " doesnt have any parents")
       }
       else if (personsParents == 1){
-        alert(person.firstName + " has 1 parent\n" + "They are:\n" + personsParents[0].firstName + " " + personsParents[0].lastName)
+        alert(person.firstName + " has 1 parent\n" + "They are:\n" + personsParents[0].firstName + " "
+          + personsParents[0].lastName)
       }
       else if (personsParents == 2){
-        alert(person.firstName + " has 2 parents\n" + "They are:\n" + personsParents[0].firstName + " " + personsParents[0].lastName + "\n" + personsParents[1].firstName + personsParents[1].lastName)
+        alert(person.firstName + " has 2 parents\n" + "They are:\n" + personsParents[0].firstName + " "
+          + personsParents[0].lastName + "\n" + personsParents[1].firstName + personsParents[1].lastName)
       }
       let personsKids = getDecendants(person, people)
       console.log(person.firstName + "'s kids")
       console.log(personsKids)
       alert(person.firstName + ' has ' + personsKids.length + " kids")
       for (let i = 0; i < personsKids.length; ++i) {
-        alert("First Name: " + personsKids[i].firstName + "   " + personsKids[i].lastName + "\n DoB: " + personsKids[i].dob + "\nGender: " + personsKids[i].gender );
+        alert("First Name: " + personsKids[i].firstName + "   " + personsKids[i].lastName + "\n DoB: "
+          + personsKids[i].dob + "\nGender: " + personsKids[i].gender );
       }
       let personsSpouse = getSpouse(person, people)
       console.log('The spouse')
       console.log(personsSpouse)
       if (personsSpouse != undefined){
         const spouseVariable = personsSpouse[0];
-        alert(person.firstName + " has a spouse: \n" + spouseVariable.firstName + " " + spouseVariable.lastName + "\n " + spouseVariable.gender + "             " + spouseVariable.dob)
+        alert(person.firstName + " has a spouse: \n" + spouseVariable.firstName + " " + spouseVariable.lastName
+          + "\n " + spouseVariable.gender + "             " + spouseVariable.dob)
       }
       else{
         alert(person.firstName + " doesnt have a spouse")
@@ -159,7 +169,8 @@ function mainMenu(searchResults, people, z = 0){
       let personsSiblings = getSiblings(person, people, personsParents)
       alert(person.firstName + " has " + personsSiblings.length + " siblings")
       for (let i = 0; i < personsSiblings.length; ++i) {
-        alert("First Name: " + personsSiblings[i].firstName + "   " + personsSiblings[i].lastName + "\n DoB: " + personsSiblings[i].dob + "\nGender: " + personsSiblings[i].gender );
+        alert("First Name: " + personsSiblings[i].firstName + "   " + personsSiblings[i].lastName + "\n DoB: "
+          + personsSiblings[i].dob + "\nGender: " + personsSiblings[i].gender );
       }
       console.log('the siblings')
       console.log(personsSiblings)
@@ -169,7 +180,8 @@ function mainMenu(searchResults, people, z = 0){
       console.log(foundDescendants)
       alert("Name: " + person.firstName + " " + person.lastName + "has " + (foundDescendants.length) +" kids. They are:")
       for (let i = 0; i < foundDescendants.length; ++i) {
-        alert("First Name: " + foundDescendants[i].firstName + "   " + foundDescendants[i].lastName + "\n DoB: " + foundDescendants[i].dob + "\nGender: " + foundDescendants[i].gender );
+        alert("First Name: " + foundDescendants[i].firstName + "   " + foundDescendants[i].lastName + "\n DoB: "
+          + foundDescendants[i].dob + "\nGender: " + foundDescendants[i].gender );
       }
       break;
     case "restart":
@@ -337,7 +349,8 @@ function getSiblings(person, people, personsParents){
   }
   let foundSiblings = people.filter(function(descendantsID){
     if(descendantsID.parents.length >= 1){
-      if(descendantsID.parents[0] == parentOne || descendantsID.parents[1] == parentOne || descendantsID.parents[0] == parentTwo || descendantsID.parents[1] == parentTwo){
+      if(descendantsID.parents[0] == parentOne || descendantsID.parents[1] == parentOne
+        || descendantsID.parents[0] == parentTwo || descendantsID.parents[1] == parentTwo){
         console.log(person.firstName + ' and ' + descendantsID.firstName + ' has the same parents')
 
         if(descendantsID.id != personID){
@@ -400,10 +413,12 @@ function autoValid() {
 
 function singleSearchTypeValidator(input) {
   input = input.toLowerCase()
-  return input === "first name" || input === "last name" || input === "gender" || input === "date of birth" || input === "height" || input === "weight" || input === "eye color" || input === "occupation" || input === "multi";
+  return input === "first name" || input === "last name" || input === "gender" || input === "date of birth"
+    || input === "height" || input === "weight" || input === "eye color" || input === "occupation" || input === "multi";
 }
 
 function multiSearchTypeValidator(input) {
   input = input.toLowerCase()
-  return input === "first name" || input === "last name" || input === "gender" || input === "date of birth" || input === "height" || input === "weight" || input === "eye color" || input === "occupation" || input === "exit";
+  return input === "first name" || input === "last name" || input === "gender" || input === "date of birth"
+    || input === "height" || input === "weight" || input === "eye color" || input === "occupation" || input === "exit";
 }
