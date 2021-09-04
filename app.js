@@ -3,21 +3,17 @@ let isValid = false;
 let targetPerson = "";
 
 const singleSearchTypes = [
-  "First name", "Last Name", "Gender", "Date of Birth", "Weight",
+  "First name", "Last Name", "Gender", "Date of Birth", "Weight", "Height",
   "Eye color", "Occupation",
   "Multi",
 ];
 
 const multiSearchTypes = [
-  "First name", "Last Name", "Gender", "Date of Birth", "Weight",
+  "First name", "Last Name", "Gender", "Date of Birth", "Weight", "Height",
   "Eye color", "Occupation",
   "Exit"
 ];
 
-// bugs!!!
-
-//multi search: first name last name,date of birth, exit
-//still need to do search for height and weight
 function app(people) {
   const isNameKnown = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo);
   let searchResults;
@@ -299,7 +295,7 @@ function searchByOccupation(people) {
   return foundOccupation;
 }
 
-// original funcction before recursion
+// original function before recursion
 // function getDecendants(person, people){
 //   //get the persons ID, then find it in the parents array, could be 0 or 1
 //   let descendantsID = new Array()
