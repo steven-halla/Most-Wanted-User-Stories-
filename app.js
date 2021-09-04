@@ -17,7 +17,7 @@ const multiSearchTypes = [
 // bugs!!!
 
 //multi search: first name last name,date of birth, exit
-//family function is broke
+//still need to do search for height and weight
 function app(people) {
   const isNameKnown = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo);
   let searchResults;
@@ -92,7 +92,7 @@ function app(people) {
           break;
         case "exit":
         default:
-          console.log("Exiting multi-search prompt.");
+          console.log("Here are the results of your search.");
           return filteredPeople;
       }
       if (filteredPeople.length === 0) {
@@ -127,7 +127,7 @@ function app(people) {
 function mainMenu(searchResults, people, z = 0){
   if (!searchResults) {
     alert("Could not find that individual.");
-    return app(people); // restart
+    return app(people);
   }
   const person = searchResults[z];
   let displayOption = promptFor("Found " + person.firstName + " " + person.lastName
@@ -140,7 +140,6 @@ function mainMenu(searchResults, people, z = 0){
         + person.eyeColor + "\noccupation: " + person.occupation, autoValid)
       break;
     case "family":
-      //lets get my persons parents
       let personsParents = getParents(person, people)
       console.log(person.firstName + "'s parents:")
       console.log(personsParents)
@@ -322,18 +321,18 @@ function getSpouse(person, people){
 
 function getSiblings(person, people, personsParents){
   let personID = person.id
-  let parentOne = personsParents[0].id
-  let parentTwo = personsParents[1].id
+  let parentOne = personsParents[0]
+  let parentTwo = personsParents[1]
   let parentsNumber = person.parents
   if(parentsNumber.length = 0){
     //No parents listed
   }
   else if(parentsNumber.length == 1){
-    parentOne = personsParents[0].id
+    parentOne = personsParents[0]
   }
   else if(parentsNumber.length == 2){
-    parentOne = personsParents[0].id
-    parentTwo = personsParents[1].id
+    parentOne = personsParents[0]
+    parentTwo = personsParents[1]
   }
   let foundSiblings = people.filter(function(descendantsID){
     if(descendantsID.parents.length >= 1){
