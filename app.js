@@ -748,7 +748,7 @@ function multiSearchTypeValidator(input) {
   return input === "first name" || input === "last name" || input === "gender" || input === "date of birth"
     || input === "height" || input === "weight" || input === "eye color" || input === "occupation" || input === "exit";
 }
-
+//
 
 
 
