@@ -15,7 +15,7 @@ const multiSearchTypes = [
 ];
 
 // bugs!!!
-// single search first name, last name, dob,
+// single search  dob,
 //multi search: first name last name,date of birth, exit
 //family function is broke
 function app(people) {
@@ -221,7 +221,7 @@ function searchByLastName(people){
   let lastName = promptFor("What is the person's last name?", autoValid);
 
   let foundPerson = people.filter(function(potentialMatch){
-      return potentialMatch.lastName === lastName;
+      return potentialMatch.lastName.toLowerCase() === lastName;
     }
   )
   console.log(foundPerson)
@@ -247,12 +247,12 @@ function searchGender(people) {
 }
 
 function searchByDoB(people) {
-  let dateOfBirth = promptFor("What date of birth are we looking for? dd/mm/yyyy format", autoValid);
-  let founddateOfBirth = people.filter(function (potentialMatch) {
+  let dateOfBirth = promptFor("What date of birth are we looking for? dd/mm/yyyy format, if single digit no zeros", autoValid);
+  let foundDateOfBirth = people.filter(function (potentialMatch) {
     return potentialMatch.dob === dateOfBirth;
   })
-  console.log(founddateOfBirth);
-  return founddateOfBirth;
+  console.log(foundDateOfBirth);
+  return foundDateOfBirth;
 }
 function searchByOccupation(people){
   let occupationSearch = promptFor("What occupation do you need?", autoValid);
