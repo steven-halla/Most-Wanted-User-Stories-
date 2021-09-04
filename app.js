@@ -15,7 +15,7 @@ const multiSearchTypes = [
 ];
 
 // bugs!!!
-// single search  dob,
+
 //multi search: first name last name,date of birth, exit
 //family function is broke
 function app(people) {
@@ -26,7 +26,6 @@ function app(people) {
       searchResults = searchByName(people);
       break;
     case 'no':
-      // TODO: search by criteria
       let searchType = promptFor('How do you want to search? ' + singleSearchTypes, singleSearchTypeValidator)
       console.log("search type: " + searchType);
       switch (searchType) {
@@ -68,16 +67,25 @@ function app(people) {
     console.log("Beginning multi-search");
 
     let filteredPeople = people;
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
       let searchType = promptFor('Multi-search: Pick criteria ' + i + 1 + ' of 5(max): '
-        + multiSearchTypes, multiSearchTypeValidator) //in the future add rotary dial type option 1,2,3 or typing in the function
+        + multiSearchTypes, multiSearchTypeValidator)
       console.log(searchType)
       switch (searchType) {
-        case "eye color":
-          filteredPeople = searchByEyeColor(filteredPeople);
+        case "first name":
+          filteredPeople = searchByFirstName(filteredPeople);
+          break;
+        case "last name":
+          filteredPeople = searchByLastName(filteredPeople);
           break;
         case "gender":
           filteredPeople = searchGender(filteredPeople);
+          break;
+        case "date of birth":
+          filteredPeople = searchByDoB(filteredPeople);
+          break;
+        case "eye color":
+          filteredPeople = searchByEyeColor(filteredPeople);
           break;
         case "occupation":
           filteredPeople = searchByOccupation(filteredPeople);
@@ -136,14 +144,14 @@ function mainMenu(searchResults, people, z = 0){
       let personsParents = getParents(person, people)
       console.log(person.firstName + "'s parents:")
       console.log(personsParents)
-      if(personsParents == 0){
+      if(personsParents === 0){
         alert(person.firstName + " doesnt have any parents")
       }
-      else if (personsParents == 1){
+      else if (personsParents === 1){
         alert(person.firstName + " has 1 parent\n" + "They are:\n" + personsParents[0].firstName + " "
           + personsParents[0].lastName)
       }
-      else if (personsParents == 2){
+      else if (personsParents === 2){
         alert(person.firstName + " has 2 parents\n" + "They are:\n" + personsParents[0].firstName + " "
           + personsParents[0].lastName + "\n" + personsParents[1].firstName + personsParents[1].lastName)
       }
@@ -208,11 +216,8 @@ function searchByName(people) {
 function searchByFirstName(people){
   let firstName = promptFor("What is the person's first name?", autoValid);
   let foundPerson = people.filter(function(potentialMatch){
-    console.log("firstname 1");
-
     return potentialMatch.firstName.toLowerCase() === firstName;
   })
-  console.log("firstname 2");
   console.log("first name matches: ", foundPerson)
   return foundPerson;
 }
@@ -238,9 +243,9 @@ function searchByEyeColor(people){
 }
 
 function searchGender(people) {
-  let genderNuetrality = promptFor("You want male or female?", autoValid);
+  let genderNeutrality = promptFor("You want male or female?", autoValid);
   let foundGender = people.filter(function (potentialMatch) {
-    return potentialMatch.gender === genderNuetrality;
+    return potentialMatch.gender === genderNeutrality;
   })
   console.log(foundGender);
   return foundGender;
@@ -254,9 +259,11 @@ function searchByDoB(people) {
   console.log(foundDateOfBirth);
   return foundDateOfBirth;
 }
-function searchByOccupation(people){
+
+
+function searchByOccupation(people) {
   let occupationSearch = promptFor("What occupation do you need?", autoValid);
-  let foundOccupation = people.filter(function(potentialMatch){
+  let foundOccupation = people.filter(function (potentialMatch) {
     return potentialMatch.occupation === occupationSearch;
   })
   console.log(foundOccupation);
@@ -293,7 +300,6 @@ function getDecendants(person, people) {
       return false;
     }
   })
-
   for(let i = 0; i < foundDescendants.length; i++) {
     console.log("recursion call below");
     let resultFromRecursiveCall = getDecendants(foundDescendants[i],people);
@@ -306,30 +312,12 @@ function getSpouse(person, people){
   if(person.currentSpouse != null){
     let spouseID = person.currentSpouse
     let spouseRecord = people.filter(function(potentialMatch){
-      if(potentialMatch.id === spouseID){
-        return true;
-      }
-      else{
-        return false;
-      }
+      return potentialMatch.id === spouseID;
 
     })
     console.log(spouseRecord)
     return spouseRecord;
   }
-}
-
-function searchByOccupation(people) {
-  let occupationSearch = promptFor("What occupation do you need?", autoValid);
-  let foundOccupation = people.filter(function (potentialMatch) {
-    if (potentialMatch.occupation === occupationSearch) {
-      return true;
-    } else {
-      return false;
-    }
-  })
-  console.log(foundOccupation);
-  return foundOccupation;
 }
 
 function getSiblings(person, people, personsParents){
