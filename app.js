@@ -68,7 +68,8 @@ function app(people) {
 
     let filteredPeople = people;
     for (let i = 0; i < 5; i++) {
-      let searchType = promptFor('Multi-search: Pick criteria ' + i + 1 + ' of 5(max): '
+      // had a plus 1 after i
+      let searchType = promptFor('Multi-search: Pick criteria ' + i + ' of 5(max): '
         + multiSearchTypes, multiSearchTypeValidator)
       console.log(searchType)
       switch (searchType) {
@@ -353,17 +354,16 @@ function getSiblings(person, people, personsParents){
 }
 
 function getParents(person, people){
-  let personID = person.id
   let parentOne = person.parents[0]
   let parentTwo = person.parents[1]
   let parentsNumber = person.parents
-  if(parentsNumber.length = 0){
+  if(parentsNumber.length === 0){
     //No parents listed
   }
-  else if(parentsNumber.length == 1){
+  else if(parentsNumber.length === 1){
     parentOne = person.parents[0]
   }
-  else if(parentsNumber.length == 2){
+  else if(parentsNumber.length === 2){
     parentOne = person.parents[0]
     parentTwo = person.parents[1]
   }
@@ -372,7 +372,6 @@ function getParents(person, people){
   })
   console.log(foundParents);
   return foundParents;
-
 }
 
 function promptFor(question, validator) {
@@ -387,11 +386,7 @@ function promptFor(question, validator) {
 }
 
 function yesNo(input) {
-  if (input.toLowerCase() === "yes" || input.toLowerCase() === "no") {
-    return true;
-  } else {
-    return false;
-  }
+  return input.toLowerCase() === "yes" || input.toLowerCase() === "no";
 }
 
 function autoValid() {
