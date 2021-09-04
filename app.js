@@ -181,7 +181,7 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
       alert(person.firstName + " has 2 parents\n" + "They are:\n" + personsParents[0].firstName + " " + personsParents[0].lastName + "\n" + personsParents[1].firstName + personsParents[1].lastName)
     }
     //does my guy/gal have kids?
-    let personsKids = getDecendants(person, people)
+    let personsKids = getDescendants(person, people)
     console.log(person.firstName + "'s kids")
     console.log(personsKids)
     alert(person.firstName + ' has ' + personsKids.length + " kids")
@@ -211,11 +211,9 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
     console.log(personsSiblings)
       break;
     case "descendants":
-      let foundDescendants = getDecendants(searchResults[z], people)
+      let foundDescendants = getDescendants(searchResults[z], people)
       console.log(foundDescendants)
-      alert("Name: " + person.firstName + " " + person.lastName + "has " + (foundDescendants.length) +" kids. They are:")
-      // alert("Name: " + person.firstName + " " + person.lastName + "has " + (foundDescendants.length - 1) +" kids. They are:") this is not working as intended
-      alert("Name: " + person.firstName + " " + person.lastName + "has " + (foundDescendants.length) +" kids. They are:")
+      alert("Name: " + person.firstName + " " + person.lastName + " has " + (foundDescendants.length) +" kids. They are:")
       for (let i = 0; i < foundDescendants.length; ++i) {
         alert("First Name: " + foundDescendants[i].firstName + "   " + foundDescendants[i].lastName + "\n DoB: " + foundDescendants[i].dob + "\nGender: " + foundDescendants[i].gender );
         // alert("First Name: " + searchResults[i].firstName + "   " + searchResults[i].lastName + "\n DoB: " + searchResults[i].dob + "\nGender: " + searchResults[i].gender );
@@ -347,23 +345,28 @@ function searchByOccupation(people){
   return foundOccupation;
 }
 
-function getDecendants(person, people){
+function getDescendants(person, people) {
   //get the persons ID, then find it in the parents array, could be 0 or 1
-  let descendantsID = [];
   let personsID = person.id;
-  let foundDecendants = people.filter(function(descendantsID){
-    if(descendantsID.parents.length >= 1){
-        if(descendantsID.parents[0] == personsID || descendantsID.parents[1] == personsID){
-            console.log(person.firstName + ' is the parent of: ' + descendantsID.firstName)
-            return true;
-        }
-    }
-    else{
-      return false
+  let foundDecendants = people.filter(function (descendantsID) {
+    if (descendantsID.parents[0] === personsID || descendantsID.parents[1] === personsID) {
+      return true;
+      console.log("Hi1");
+    }else{
+      console.log("You got false")
+      return false;
     }
   })
+
+  for(let i = 0; i < foundDecendants.length; i++) {
+    console.log("recursion call below");
+    let resultFromRecursiveCall = getDescendants(foundDecendants[i],people);
+    foundDecendants.concat(resultFromRecursiveCall)
+  }
   return foundDecendants;
+
 }
+
 function getSpouse(person, people){
   if(person.currentSpouse != null){
     let spouseID = person.currentSpouse
