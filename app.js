@@ -199,11 +199,7 @@ function searchByName(people) {
   let lastName = promptFor("What is the person's last name?", autoValid);
 
   let foundPerson = people.filter(function (potentialMatch) {
-    if (potentialMatch.firstName.toLowerCase() === firstName && potentialMatch.lastName.toLowerCase() === lastName) {
-      return true;
-    } else {
-      return false;
-    }
+    return potentialMatch.firstName.toLowerCase() === firstName && potentialMatch.lastName.toLowerCase() === lastName;
   })
   console.log(foundPerson)
   return foundPerson;
@@ -212,11 +208,15 @@ function searchByName(people) {
 function searchByFirstName(people){
   let firstName = promptFor("What is the person's first name?", autoValid);
   let foundPerson = people.filter(function(potentialMatch){
-    return potentialMatch.firstName == firstName;
+    console.log("firstname 1");
+
+    return potentialMatch.firstName.toLowerCase() === firstName;
   })
-  console.log(foundPerson)
+  console.log("firstname 2");
+  console.log("first name matches: ", foundPerson)
   return foundPerson;
 }
+
 function searchByLastName(people){
   let lastName = promptFor("What is the person's last name?", autoValid);
 
