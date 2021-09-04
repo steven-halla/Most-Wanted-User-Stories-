@@ -3,13 +3,13 @@ let isValid = false;
 let targetPerson = "";
 
 const singleSearchTypes = [
-  "First name", "Last Name", "Gender", "Date of Birth",
+  "First name", "Last Name", "Gender", "Date of Birth", "Weight",
   "Eye color", "Occupation",
   "Multi",
 ];
 
 const multiSearchTypes = [
-  "First name", "Last Name", "Gender", "Date of Birth",
+  "First name", "Last Name", "Gender", "Date of Birth", "Weight",
   "Eye color", "Occupation",
   "Exit"
 ];
@@ -34,6 +34,12 @@ function app(people) {
           break;
         case 'last name':
           searchResults = searchByLastName(people)
+          break;
+        case 'weight':
+          searchResults = searchByWeight(people)
+          break;
+        case 'height':
+          searchResults = searchByHeight(people)
           break;
         case 'gender':
           searchResults = searchGender(people);
@@ -68,7 +74,6 @@ function app(people) {
 
     let filteredPeople = people;
     for (let i = 0; i < 5; i++) {
-      // had a plus 1 after i
       let searchType = promptFor('Multi-search: Pick criteria ' + i + ' of 5(max): '
         + multiSearchTypes, multiSearchTypeValidator)
       console.log(searchType)
@@ -78,6 +83,12 @@ function app(people) {
           break;
         case "last name":
           filteredPeople = searchByLastName(filteredPeople);
+          break;
+        case "weight":
+          filteredPeople = searchByWeight(filteredPeople);
+          break;
+        case "height":
+          filteredPeople = searchByHeight(filteredPeople);
           break;
         case "gender":
           filteredPeople = searchGender(filteredPeople);
@@ -233,6 +244,24 @@ function searchByLastName(people){
   return foundPerson;
 }
 
+function searchByWeight(people) {
+  let pounds = promptFor("Input number of pounds", autoValid);
+  let foundPounds = people.filter(function (potentialMatch) {
+    return potentialMatch.weight == pounds;
+  })
+  console.log(foundPounds);
+  return foundPounds;
+}
+
+function searchByHeight(people) {
+  let cm = promptFor("Input number of centimeters", autoValid);
+  let foundHeight = people.filter(function (potentialMatch) {
+    return potentialMatch.height == cm;
+  })
+  console.log(foundHeight);
+  return foundHeight;
+}
+
 function searchByEyeColor(people){
   let eyeColor = promptFor("What color eyes are we looking for?", autoValid);
   let foundEyeColor = people.filter(function (potentialMatch) {
@@ -325,20 +354,19 @@ function getSiblings(person, people, personsParents){
   let parentOne = personsParents[0]
   let parentTwo = personsParents[1]
   let parentsNumber = person.parents
-  if(parentsNumber.length = 0){
-    //No parents listed
+  if(parentsNumber.length === 0){
   }
-  else if(parentsNumber.length == 1){
+  else if(parentsNumber.length === 1){
     parentOne = personsParents[0]
   }
-  else if(parentsNumber.length == 2){
+  else if(parentsNumber.length === 2){
     parentOne = personsParents[0]
     parentTwo = personsParents[1]
   }
   let foundSiblings = people.filter(function(descendantsID){
     if(descendantsID.parents.length >= 1){
-      if(descendantsID.parents[0] == parentOne || descendantsID.parents[1] == parentOne
-        || descendantsID.parents[0] == parentTwo || descendantsID.parents[1] == parentTwo){
+      if(descendantsID.parents[0] === parentOne || descendantsID.parents[1] === parentOne
+        || descendantsID.parents[0] === parentTwo || descendantsID.parents[1] === parentTwo){
         console.log(person.firstName + ' and ' + descendantsID.firstName + ' has the same parents')
 
         if(descendantsID.id != personID){
