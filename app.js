@@ -15,13 +15,11 @@ const multiSearchTypes = [
   "Eye color", "Occupation",
   "Exit"
 ];
-//txt
-//Menu functions.
-//Used for the overall flow of the application.
-/////////////////////////////////////////////////////////////////
-//#region
 
-// app is the function called to start the entire application
+// bugs!!!
+// single search first name, last name, dob,
+//multi search: first name last name,date of birth, exit
+//family function is broke
 function app(people) {
   const isNameKnown = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo);
   let searchResults;
@@ -69,59 +67,37 @@ function app(people) {
       break;
   }
 
-  // use for loop set max to 5 which is their max choices
-  // the for loop should end each time wtih a prompt asking user "yes or no" If they want to do more inputs
-  // each time that an input is giving we need to add the people found to a list
-  //use switch type to filter and store back in combinedChoice array
-  //
-
   function multiSearch(people) {
     console.log("Beginning multi-search");
-    // let combinedChoice = [];
-    // prompt("Type in Eye Color to search by eye color or type in no eye color");
 
-    let filteredPeople = people; // we don't want to modify original people array
-    // console.log(filteredPeople); // make sure filteredPeople is actually reset
+    let filteredPeople = people;
     for (let i = 0; i < 3; i++) {
       let searchType = promptFor('Multi-search: Pick criteria ' + i + 1 + ' of 5(max): ' + multiSearchTypes, multiSearchTypeValidator) //in the future add rotary dial type option 1,2,3 or typing in the function
       console.log(searchType)
       switch (searchType) {
         case "eye color":
           filteredPeople = searchByEyeColor(filteredPeople);
-          // combinedChoice.push(searchResults);
-          // console.log("Type in Gender to search for gender");
           break;
         case "gender":
           filteredPeople = searchGender(filteredPeople);
-          // combinedChoice.push(searchResults);
-          // console.log("Type in Occupation to search by occupation");
           break;
         case "occupation":
           filteredPeople = searchByOccupation(filteredPeople);
-          // combinedChoice.push(searchResults);
           break;
         case "exit":
         default:
           console.log("Exiting multi-search prompt.");
           return filteredPeople;
       }
-
       if (filteredPeople.length === 0) {
         alert("No results found, try again.");
         multiSearch(people);
       }
       console.log("Current filtered people: ", filteredPeople);
     }
-
     return filteredPeople;
   }
 
-
-  // if + do not break
-  //have it to where it asks by one at a time.
-
-  // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  //***** create option for main menu for single search, or the results of the multisearch */
   if(searchResults.length === 1) {
     mainMenu(searchResults, people);
   }
@@ -139,24 +115,13 @@ function app(people) {
   else{
     alert('No search results found');
   }
-  //display how many results and option to select 1
 }
 
-
-// Menu function to call once you find who you are looking for
 function mainMenu(searchResults, people, z = 0){ //default 0 for first
-
-  /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
-
   if (!searchResults) {
     alert("Could not find that individual.");
     return app(people); // restart
   }
-
-//*********************** */
-//they missed the index to display  the user
-//****************** */
-
   const person = searchResults[z];
   let displayOption = promptFor("Found " + person.firstName + " " + person.lastName + " . \nDo you want to know their 'info', 'family', or 'descendants'? \nType the option you want or 'restart' or 'quit'", autoValid);
 
@@ -169,13 +134,13 @@ function mainMenu(searchResults, people, z = 0){ //default 0 for first
       let personsParents = getParents(person, people)
       console.log(person.firstName + "'s parents:")
       console.log(personsParents)
-      if(personsParents == 0){
+      if(personsParents === 0){
         alert(person.firstName + " doesnt have any parents")
       }
-      else if (personsParents == 1){
+      else if (personsParents === 1){
         alert(person.firstName + " has 1 parent\n" + "They are:\n" + personsParents[0].firstName + " " + personsParents[0].lastName)
       }
-      else if (personsParents == 2){
+      else if (personsParents === 2){
         alert(person.firstName + " has 2 parents\n" + "They are:\n" + personsParents[0].firstName + " " + personsParents[0].lastName + "\n" + personsParents[1].firstName + personsParents[1].lastName)
       }
       //does my guy/gal have kids?
