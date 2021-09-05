@@ -15,7 +15,7 @@ const multiSearchTypes = [
 ];
 
 function app(people) {
-  const isNameKnown = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo);
+  const isNameKnown = promptFor("Use Lower Case for all prompts. Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo);
   let searchResults;
   switch (isNameKnown) {
     case 'yes':
