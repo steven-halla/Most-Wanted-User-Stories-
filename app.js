@@ -315,30 +315,28 @@ function searchByOccupation(people) {
 // }
 
 function getDecendants(person, people) {
-  let personsID = person.id;
-  let foundDescendants = people.filter(function (descendantsID) {
-    if (descendantsID.parents[0] === personsID || descendantsID.parents[1] === personsID) {
-      return true;
-      console.log("Hi1");
-    }else{
-      console.log("You got false")
-      return false;
-    }
-  })
-  for(let i = 0; i < foundDescendants.length; i++) {
-    console.log("recursion call below");
-    let resultFromRecursiveCall = getDecendants(foundDescendants[i],people);
-    foundDescendants.concat(resultFromRecursiveCall)
-  }
-  return foundDescendants;
+  const personsID = person.id;
+  let foundDescendants = people.filter(function (person) {
+    return person.parents[0] === personsID || person.parents[1] === personsID;
+  });
 
+  for(let i = 0; i < foundDescendants.length; i++) {
+    const descendant = foundDescendants[i];
+    console.log("recursion call, descendant: ", descendant);
+    let descendantsOfDescendant = getDecendants(descendant, people);
+    console.log("found descendants of descendant: ", descendantsOfDescendant);
+    foundDescendants = foundDescendants.concat(descendantsOfDescendant);
+  }
+
+  console.log("all found descendants: ", foundDescendants);
+  return foundDescendants;
 }
+
 function getSpouse(person, people){
   if(person.currentSpouse != null){
     let spouseID = person.currentSpouse
     let spouseRecord = people.filter(function(potentialMatch){
       return potentialMatch.id === spouseID;
-
     })
     console.log(spouseRecord)
     return spouseRecord;
